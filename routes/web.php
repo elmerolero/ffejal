@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
+use App\Http\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +27,12 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::controller(UsersController::class) -> group( function(){
+        Route::get( '/administracion/users', 'index' ) -> name( 'administracion.users' );
+    });
     Route::get('/administracion', function () {
-        return view('administracion');
+        return view('administracion.index');
     })->name('administracion');
     Route::get('/jueces', function () {
         return view('jueces');
