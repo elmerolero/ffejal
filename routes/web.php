@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DireccionController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\UserController;
@@ -28,6 +29,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+
+    Route::get( "/usuario/domicilio", [DireccionController::class, 'index'] ) -> name( 'profile.address' );
     Route::controller(UsersController::class) -> group( function(){
         Route::get( '/administracion/users', 'index' ) -> name( 'administracion.users' );
     });

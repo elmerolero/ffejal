@@ -7,8 +7,9 @@
         <x-jet-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('register') }}">
+            <h1 class="block mt-1 w-full text-xl text-white text-center font-bold">Registro</h1>
             @csrf
-
+            
             <div>
                 <x-jet-label for="name" value="{{ __('Nombre') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />

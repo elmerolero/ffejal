@@ -15,15 +15,21 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Inicio') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('cobranza') }}" :active="request()->routeIs('cobranza*')">
-                        {{ __('Cobranza') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('jueces') }}" :active="request()->routeIs('jueces*')">
-                        {{ __('Jueces') }}
-                    </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('administracion') }}" :active="request()->routeIs('administracion*')">
-                        {{ __('Administrador') }}
-                    </x-jet-nav-link>
+                    @if( Auth::user() -> current_team_id == 5 || Auth::user() -> current_team_id == 3 )
+                        <x-jet-nav-link href="{{ route('cobranza') }}" :active="request()->routeIs('cobranza*')">
+                            {{ __('Cobranza') }}
+                        </x-jet-nav-link>
+                    @endif
+                    @if( Auth::user() -> current_team_id == 5 || Auth::user() -> current_team_id == 4 )
+                        <x-jet-nav-link href="{{ route('jueces') }}" :active="request()->routeIs('jueces*')">
+                            {{ __('Jueces') }}
+                        </x-jet-nav-link>
+                    @endif
+                    @if( Auth::user() -> current_team_id == 5 )
+                        <x-jet-nav-link href="{{ route('administracion') }}" :active="request()->routeIs('administracion*')">
+                            {{ __('Administrador') }}
+                        </x-jet-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -109,6 +115,10 @@
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
 
+                            <x-jet-dropdown-link href="{{ route('profile.address') }}">
+                                {{ __('Address') }}
+                            </x-jet-dropdown-link>
+
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
@@ -147,8 +157,23 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Inicio') }}
             </x-jet-responsive-nav-link>
+            @if( Auth::user() -> current_team_id == 5 || Auth::user() -> current_team_id == 3 )
+                <x-jet-responsive-nav-link href="{{ route('cobranza') }}" :active="request()->routeIs('cobranza*')">
+                    {{ __('Cobranza') }}
+                </x-jet-responsive-nav-link>
+            @endif
+            @if( Auth::user() -> current_team_id == 5 || Auth::user() -> current_team_id == 4 )
+                <x-jet-responsive-nav-link href="{{ route('jueces') }}" :active="request()->routeIs('jueces*')">
+                    {{ __('Jueces') }}
+                </x-jet-responsive-nav-link>
+            @endif
+            @if( Auth::user() -> current_team_id == 5 )
+                <x-jet-responsive-nav-link href="{{ route('administracion') }}" :active="request()->routeIs('administracion*')">
+                    {{ __('Administracion') }}
+                </x-jet-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

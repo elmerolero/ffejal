@@ -13,6 +13,7 @@
         @endif
 
         <form method="POST" action="{{ route('login') }}">
+            <h1 class="block mt-1 w-full text-xl text-white text-center font-bold">Iniciar Sesión</h1>
             @csrf
 
             <div>
